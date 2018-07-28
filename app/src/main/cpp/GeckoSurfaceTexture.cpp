@@ -158,7 +158,9 @@ GeckoSurfaceTexture::AttachToGLContext(EGLContext aContext) {
     VRB_GL_CHECK(glTexParameteri(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
   }
   sEnv->CallVoidMethod(m.surface, sAttachToGLContext, (jlong)aContext, (jint)m.texture);
-  CheckJNIException(sEnv, __FUNCTION__);
+  if (!CheckJNIException(sEnv, __FUNCTION__)) {
+    //DecrementUse();
+  }
 }
 
 bool

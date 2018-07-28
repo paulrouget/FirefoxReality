@@ -327,8 +327,8 @@ public class VRBrowserActivity extends PlatformActivity implements WidgetManager
         });
     }
 
-    @SuppressWarnings({"UnusedDeclaration"})
     @Keep
+    @SuppressWarnings({"UnusedDeclaration"})
     void handleBack() {
         runOnUiThread(new Runnable() {
             @Override
@@ -428,6 +428,7 @@ public class VRBrowserActivity extends PlatformActivity implements WidgetManager
     }
 
     @Keep
+    @SuppressWarnings({"UnusedDeclaration"})
     String getStorageAbsolutePath() {
         return getExternalFilesDir(null).getAbsolutePath();
     }

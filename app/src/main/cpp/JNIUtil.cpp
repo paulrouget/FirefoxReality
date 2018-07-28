@@ -48,15 +48,17 @@ ValidateMethodID(JNIEnv* aEnv, jobject aObject, jmethodID aMethod, const char* a
   return true;
 }
 
-void
+bool
 CheckJNIException(JNIEnv* aEnv, const char* aName) {
   if (!aEnv) {
-    return;
+    return false;
   }
   if (aEnv->ExceptionCheck() == JNI_TRUE) {
     aEnv->ExceptionClear();
     VRB_ERROR("Java exception encountered when calling %s", aName);
+    return false;
   }
+  return true;
 }
 
 }
