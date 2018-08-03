@@ -42,7 +42,7 @@ public class SessionStore implements GeckoSession.NavigationDelegate, GeckoSessi
         }
         return mInstance;
     }
-    public static final String DEFAULT_URL = "resource://android/assets/html/index.html";
+    public static final String DEFAULT_URL = "https://webvr.info/samples/03-vr-presentation.html"; //"resource://android/assets/html/index.html";
     public static final String ERROR_URL = "resource://android/assets/html/error.html";
 
     public static final String NET_ERROR = "about:neterror";
