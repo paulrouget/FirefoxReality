@@ -33,6 +33,12 @@ android {
             }
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
             minifyEnabled true
@@ -188,6 +194,7 @@ dependencies {
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.google.vr:sdk-audio:1.160.0'
     implementation "org.mozilla.components:telemetry:0.10"
+    implementation project(':servoview')
 }
 
 if (findProject(':wavesdk')) {
