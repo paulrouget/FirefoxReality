@@ -1,4 +1,5 @@
 include ':app'
+include ':servoview'
 
 def wavebuild = new File('third_party/wavesdk/build.gradle')
 
