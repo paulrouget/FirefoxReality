@@ -401,7 +401,8 @@ struct VRExternalShmem {
   int64_t generationB;
   int64_t browserGenerationA;
 #endif  // !defined(__ANDROID__)
-  VRBrowserState browserState;
+  VRBrowserState geckoState;
+  VRBrowserState servoState;
 #if !defined(__ANDROID__)
   int64_t browserGenerationB;
 #endif  // !defined(__ANDROID__)

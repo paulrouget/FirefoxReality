@@ -172,7 +172,7 @@ struct ExternalVR::State {
 
   void PullBrowserStateWhileLocked() {
     const bool wasPresenting = IsPresenting();
-    memcpy(&browser, &data.browserState, sizeof(mozilla::gfx::VRBrowserState));
+    memcpy(&browser, &data.geckoState, sizeof(mozilla::gfx::VRBrowserState));
 
 
     if ((!wasPresenting && IsPresenting()) || browser.navigationTransitionActive) {
