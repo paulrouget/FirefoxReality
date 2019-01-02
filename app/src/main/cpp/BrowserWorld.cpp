@@ -948,6 +948,7 @@ BrowserWorld::DrawWorld() {
     return da < db;
   });
   m.device->StartFrame();
+  m.externalVR->PushFramePoses(m.device->GetHeadTransform(), m.controllers->GetControllers());
   m.rootOpaque->SetTransform(m.device->GetReorientTransform());
   m.rootTransparent->SetTransform(m.device->GetReorientTransform());
 
