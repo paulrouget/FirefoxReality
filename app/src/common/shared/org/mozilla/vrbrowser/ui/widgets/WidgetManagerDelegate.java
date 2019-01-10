@@ -32,6 +32,7 @@ public interface WidgetManagerDelegate {
     void removeUpdateListener(@NonNull UpdateListener aUpdateListener);
     void pushBackHandler(@NonNull Runnable aRunnable);
     void popBackHandler(@NonNull Runnable aRunnable);
+    void pushIsServo(boolean aIsServo);
     void pushWorldBrightness(Object aKey, float aBrightness);
     void setWorldBrightness(Object aKey, float aBrightness);
     void popWorldBrightness(Object aKey);

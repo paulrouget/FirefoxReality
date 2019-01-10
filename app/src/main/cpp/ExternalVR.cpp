@@ -121,6 +121,7 @@ namespace crow {
 
 struct ExternalVR::State {
   static ExternalVR::State * sState;
+  ExternalVR::VRBrowserType sourceBrowser;
   mozilla::gfx::VRExternalShmem data;
   mozilla::gfx::VRSystemState system;
   mozilla::gfx::VRBrowserState browser;
@@ -160,6 +161,7 @@ struct ExternalVR::State {
     lastFrameId = 0;
     firstPresentingFrame = false;
     waitingForExit = false;
+    sourceBrowser = ExternalVR::VRBrowserType::Gecko;
   }
 
   static ExternalVR::State& Instance() {
@@ -172,8 +174,12 @@ struct ExternalVR::State {
 
   void PullBrowserStateWhileLocked() {
     const bool wasPresenting = IsPresenting();
-    memcpy(&browser, &data.geckoState, sizeof(mozilla::gfx::VRBrowserState));
 
+    if (sourceBrowser == ExternalVR::VRBrowserType::Gecko) {
+      memcpy(&browser, &data.geckoState, sizeof(mozilla::gfx::VRBrowserState));
+    } else {
+      memcpy(&browser, &data.servoState, sizeof(mozilla::gfx::VRBrowserState));
+    }
 
     if ((!wasPresenting && IsPresenting()) || browser.navigationTransitionActive) {
       firstPresentingFrame = true;
@@ -287,6 +293,11 @@ ExternalVR::PullBrowserState() {
   if (lock.IsLocked()) {
    m.PullBrowserStateWhileLocked();
   }
+}
+
+void ExternalVR::SetSourceBrowser(VRBrowserType aBrowser) {
+  m.Reset();
+  m.sourceBrowser = aBrowser;
 }
 
 void
